@@ -1,0 +1,10 @@
+﻿Cliente : Daiane 000000-00 Hospital Santa Terezinha 18/08/2020
+Nome Do Produto: Croquete Valor Unitario: 0,65 SubTotal : 32,5
+Nome Do Produto: Risolis Valor Unitario: 0,65 SubTotal : 32,5
+Nome Do Produto: coxinha de frango Valor Unitario: 0,65 SubTotal : 32,5
+Nome Do Produto: bolinha de queijo Valor Unitario: 0,65 SubTotal : 58,5
+Nome Do Produto: Pastelzinho de carne Valor Unitario: 0,65 SubTotal : 32,5
+Valor Total: 188,50
+Cliente : Claudinier Neto 000000-00 Rua Porto Alegre 343 18/08/2020
+Nome Do Produto: Pizza Valor Unitario: 16,02 SubTotal : 16,02
+Valor Total: 16,02
