@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Pedidos.Entities.Execiptions;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -16,9 +17,20 @@ namespace Pedidos.Entities
 
         public Cliente(string name, string endereco, string cPF)
         {
-            Name = name;
-            Endereco = endereco;
-            CPF = cPF;
+            try
+            {
+                Name = name;
+                Endereco = endereco;
+                CPF = cPF;
+                
+            }
+            catch (InvalidException e)
+            {
+                Console.WriteLine("error: "+e.Message);
+                Console.WriteLine("Sistem Reiniciado automaticamente!");
+                Run.RunGo();
+                
+            }
         }
     }
 }
