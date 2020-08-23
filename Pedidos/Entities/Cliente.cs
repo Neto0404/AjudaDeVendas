@@ -32,5 +32,10 @@ namespace Pedidos.Entities
                 
             }
         }
+
+        public override string ToString()
+        {
+            return Name+" CPF: "+CPF;
+        }
     }
 }

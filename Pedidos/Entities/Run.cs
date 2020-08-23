@@ -11,7 +11,26 @@ namespace Pedidos.Entities
     {
         public static void RunGo()
         {
-            string path = @"C:\temp\Pedidos.txt";
+            string path = @"C:\HelpOfControl\Pedidos.txt";
+            string path2 = @"C:\HelpOfControl\Clientes.txt";
+
+            if (File.Exists(path) && File.Exists(path2))
+            {
+
+            }
+            else if (!File.Exists(path) && !File.Exists(path2))
+            {
+                File.Create(path);
+                File.Create(path2);
+
+            }
+            else if (!File.Exists(path))
+            {
+
+                File.Create(path2);
+            }
+
+
 
             Pedido pedido = new Pedido();
             try
@@ -22,7 +41,7 @@ namespace Pedidos.Entities
                 Console.Write("Endereço Do CLiente: ");
                 string EnderecoC = Console.ReadLine();
                 Console.Write("CPF ou CNPJ Do CLiente: ");
-                 CPFC = Console.ReadLine();
+                string CPFC = Console.ReadLine();
 
                 Cliente cliente = new Cliente(NomeC, EnderecoC, CPFC);
 
@@ -51,8 +70,9 @@ namespace Pedidos.Entities
             catch (InvalidException e)
             {
                 Console.WriteLine("Error: " + e.Message);
-                
-            }catch(System.FormatException e)
+
+            }
+            catch (System.FormatException e)
             {
                 Console.WriteLine("Error: " + e.Message);
                 Console.WriteLine("Sistema Reiniciado automaticamente!");
@@ -64,6 +84,7 @@ namespace Pedidos.Entities
             pedido.HoradoPedido = DateTime.Now;
             Console.WriteLine("Dados do Pedido: ");
             Console.WriteLine(pedido.ToString());
+
             try
             {
                 using (StreamWriter sw = File.AppendText(path))
@@ -78,22 +99,71 @@ namespace Pedidos.Entities
                 Console.WriteLine("An error occurred");
                 Console.WriteLine(e.Message);
             }
-
-            using (StreamReader sr = File.OpenText(path))
+            try
             {
-                while (!sr.EndOfStream)
+                using (StreamWriter sw = File.AppendText(path2))
                 {
-                    string line = sr.ReadLine();
-                    if (line == "Valor Total: ")
-                    {
-                        Console.WriteLine(line);
-                    }
+                    sw.WriteLine(pedido.Cliente.ToString());
+                    Console.WriteLine();
                 }
+
+            }
+            catch (IOException e)
+            {
+                Console.WriteLine("An error occurred");
+                Console.WriteLine(e.Message);
             }
 
-            Console.WriteLine("Precione espaço tecla para Reiniciar o sitema!");
-            Console.ReadKey();
-            RunGo();
+
+            string pathCliente = @"C:\HelpOfControl\"+pedido.Cliente.Name+".txt";
+            if (File.Exists(pathCliente))
+            {
+                try
+                {
+                    using (StreamWriter sw = File.AppendText(pathCliente))
+                    {
+                        sw.WriteLine(pedido.ToString());
+                        Console.WriteLine();
+                    }
+
+                }
+                catch (IOException e)
+                {
+                    Console.WriteLine("An error occurred");
+                    Console.WriteLine(e.Message);
+                }
+
+
+            }
+            else{
+
+                using (File.Create(pathCliente));
+
+
+                try
+                {
+                    using (StreamWriter sw = File.AppendText(pathCliente))
+                    {
+                        sw.WriteLine(pedido.ToString());
+                        Console.WriteLine();
+                    }
+
+                }
+                catch (IOException e)
+                {
+                    Console.WriteLine("An error occurred");
+                    Console.WriteLine(e.Message);
+                }
+
+
+            }
+
+
+
+            Console.WriteLine("Precione ENTER tecla para Reiniciar o sitema!");
+                Console.ReadKey();
+                RunGo();
         }
     }
 }
+

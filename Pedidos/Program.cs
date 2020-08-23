@@ -14,7 +14,16 @@ namespace Pedidos
             Console.Title = "Ajuda de Controle BY: Claudinier Neto";
             Console.ForegroundColor = ConsoleColor.Green;
 
-            string path = @"C:\temp\Pedidos.txt";
+
+            string path = @"C:\HelpOfControl\Pedidos.txt";
+            string path2 = @"C:\HelpOfControl\Clientes.txt";
+
+            Directory.CreateDirectory(@"C:\HelpOfControl");
+            
+
+
+
+
 
             try { 
                string History = File.ReadAllText(path);
